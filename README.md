@@ -2,7 +2,7 @@
 
 A simple example to create Blogs with name and content stored in a local Mysql DB.
 
-## Instalation
+## Installation
 
 src/main/resources/application.properties
 
@@ -19,7 +19,7 @@ spring.datasource.password=root
 
 ## Run
 ```
-Remove the complided code
+Remove the compiled code
 mvn clean
 
 Compile the code
@@ -28,7 +28,7 @@ mvn package
 Start the server
 java -jar target/demo-0.0.1-SNAPSHOT.jar
 
-On browser open localhost:3000
+Open browser on localhost:3000
 ```
 
 ## API
