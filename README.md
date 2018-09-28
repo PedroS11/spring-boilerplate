@@ -27,6 +27,8 @@ mvn package
 
 Start the server
 java -jar target/demo-0.0.1-SNAPSHOT.jar
+
+On browser open localhost:3000
 ```
 
 ## API
