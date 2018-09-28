@@ -8,6 +8,7 @@ import org.springframework.http.*;
 
 import com.example.demo.model.Blog;
 import com.example.demo.repository.*;
+import com.example.demo.*;
 
 @RestController
 @RequestMapping("/blog")
@@ -17,25 +18,24 @@ public class BlogController {
     private BlogRepository blogRepository;
 
     @GetMapping("")
-    public Blog getOne(@RequestParam("name") String blogName) {
-        System.out.println(blogName);
+    public ResponseEntity<?> getOne(@RequestParam("name") String blogName) {
         Blog b = blogRepository.findByName(blogName);
 
-        if(b == null)
-            return null;
-        return b;
+        if (b == null)
+            throw new ErrorException(HttpStatus.BAD_REQUEST, "Blog doesn't exist");
+        return ResponseEntity.ok(b);
     }
 
     @GetMapping("/all")
-    public Iterable<Blog> getAllBlogs() {
-        return blogRepository.findAll();
+    public ResponseEntity<?> getAllBlogs() {
+        return ResponseEntity.ok(blogRepository.findAll());
     }
 
-    @PostMapping(value = "/post", 
-    // consumes = { MediaType.APPLICATION_FORM_URLENCODED_VALUE }, RequestParam em vez de RequestBody
-    produces = { MediaType.APPLICATION_JSON_VALUE })
-    public Blog create(@RequestHeader("Authorization") String authorization, @RequestBody Map<String, String> body) {
-        
+    @PostMapping(value = "",
+            produces = { MediaType.APPLICATION_JSON_VALUE })
+    public ResponseEntity<?> create(@RequestHeader("Authorization") String authorization,
+            @RequestBody Map<String, String> body) {
+
         String name = body.get("name");
         String content = body.get("content");
 
@@ -43,6 +43,6 @@ public class BlogController {
 
         blogRepository.save(blog);
 
-        return blog;
+        return ResponseEntity.ok(blog);
     }
 }
