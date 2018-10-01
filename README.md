@@ -19,13 +19,13 @@ spring.datasource.password=root
 
 ## Run
 ```
-Remove the compiled code
+// Remove the compiled code
 mvn clean
 
-Compile the code
+// Compile the code
 mvn package
 
-Start the server
+// Start the server
 java -jar target/demo-0.0.1-SNAPSHOT.jar
 
 Open browser on localhost:3000
